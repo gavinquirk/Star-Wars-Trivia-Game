@@ -3,8 +3,7 @@ $("#endContainer").hide()
 
 $(document).ready(function () {
 
-    var correctAnswers = 0;
-
+    // Array holding questions, choices, and answers
     var questionArr = [
         {
             question: "What type of blaster does Han Solo use?",
@@ -20,68 +19,41 @@ $(document).ready(function () {
             question: "Who is Luke Skywalker's Father?",
             choices: ["Han Solo", "Darth Vader", "Obi-Wan Kenobi", "Bob Skywalker"],
             answer: "Darth Vader"
+        },
+        {
+            question: "What is Princess Leia's last name?",
+            choices: ["Organa", "Skywalker", "Ren", "Fett"],
+            answer: "Organa"
+        },
+        {
+            question: "About how old is Yoda in the original trilogy?",
+            choices: ["1200", "800", "500", "200"],
+            answer: "800"
+        },
+        {
+            question: "About how long did it take the Millenium Falcon to complete the Kessel Run?",
+            choices: ["21 Parsecs", "7 Parsecs", "17 Parsecs", "12 Parsecs"],
+            answer: "12 Parsecs"
         }
     ]
+    var correctAnswers = 0;
+    var counter = questionArr.length * 5
+
+    // Tell player the time that will be allotted
+    $("#startTime").append("You will have " +counter+ " seconds to complete " +questionArr.length+ " questions")
 
 
     // On start button click
     $("#startBtn").on("click", function () {
 
-        var counter = questionArr.length * 5
 
         // Hide and show containers
         $("#introContainer").hide()
         $("#gameContainer").show()
 
-        // Generate rows and columns for questions
-        for (i = 0; i < questionArr.length; i++) {
-
-            // Variables for row and column creation
-            var gameContainer = $("#gameContainer")
-            var rowNew = $("<div id='row" + i + "' class='row'>")
-            var colNew = $("<div id='col" + i + "' class='col-md-12'>")
-            var qConNew = $("<div id='qCon" + i + "' class='qCon'>")
-            var cConNew = $("<div id='cCon" + i + "' class='cCon'>")
-            var question = questionArr[i].question
-            var cCon = "#cCon" + i + ""
-            var qCon = "#qCon" + i + ""
-            var choices = questionArr[i].choices
-
-            // Variable Function for generating choice content
-            var choiceContent = function () {
-                for (c = 0; c < choices.length; c++) {
-                    var choiceBtn = $("<input type='radio' name='btnRow" +i+ "' id='"+choices[c]+"'>")
-                    $(cCon).append(choices[c], choiceBtn)
-
-
-
-                }
-            }
-
-            // Create a div with rows and columns for each question
-            gameContainer.append(rowNew.append(colNew.append(
-                qConNew,
-                cConNew
-            )))
-            // Append question to question container
-            $(qCon).append(question)
-            // Append Choice Content
-            choiceContent()
-
-        } // END OF FORLOOP
-
-        // ANSWER CHECK FUNCTION
-            var answerCheck = function() {
-                for (a = 0; a < questionArr.length; a++) {
-                    if ($("input[id='"+questionArr[a].answer+"']").is(':checked')) {
-                        correctAnswers++
-                        console.log('correct: ' + questionArr[a].answer)
-                    }
-                }
-            }
-
 
         // Timer
+        $("#counter").html("Time Left: " + counter)
         var interval = setInterval(function () {
             counter--
             $("#counter").html("Time Left: " + counter)
@@ -100,13 +72,49 @@ $(document).ready(function () {
 
 
 
+        // Generate rows and columns for questions
+        for (i = 0; i < questionArr.length; i++) {
 
+            // Variables for row and column creation
+            var gameContainer = $("#gameContainer")
+            var rowNew = $("<div id='row" + i + "' class='row'>")
+            var colNew = $("<div id='col" + i + "' class='col-md-12'>")
+            var qConNew = $("<div id='qCon" + i + "' class='qCon'>")
+            var cConNew = $("<div id='cCon" + i + "' class='cCon'>")
+            var question = questionArr[i].question
+            var cCon = "#cCon" + i + ""
+            var qCon = "#qCon" + i + ""
+            var choices = questionArr[i].choices
 
+            // Variable Function for generating choice content
+            var choiceContent = function () {
+                for (c = 0; c < choices.length; c++) {
+                    var choiceBtn = $("<input type='radio' class='ml-1 mr-4' name='btnRow" +i+ "' id='"+choices[c]+"'>")
+                    $(cCon).append(choices[c], choiceBtn)
+                }
+            }
 
+            // Create a div with rows and columns for each question
+            gameContainer.append(rowNew.append(colNew.append(
+                qConNew,
+                cConNew
+            )))
+            
+            // Append question to question container
+            $(qCon).append(question)
+            // Append Choice Content
+            choiceContent()
+
+        } // END OF FORLOOP
+
+        // ANSWER CHECK FUNCTION
+            var answerCheck = function() {
+                for (a = 0; a < questionArr.length; a++) {
+                    if ($("input[id='"+questionArr[a].answer+"']").is(':checked')) {
+                        correctAnswers++
+                        console.log('correct: ' + questionArr[a].answer)
+                    }
+                }
+            }
     })
-
-
-
-
-
 })

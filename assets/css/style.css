@@ -1,17 +1,20 @@
 body {
-    background-color: black;
+    /* background-color: black; */
+    background-image: url('../images/background.jpg')
 }
 
-/* #gameContainer {
-    background-color:white;
-    border-style: solid;
-    border-color:lightblue;
-    border-radius: 15px;
+hr {
+    background-color: darkslategray;
+    border-color: darkslategrey;
+    height: 1px;
+}
 
-} */
-
+#counter {
+    text-align: center;
+    background-color: lightblue;
+}
 .row {
-    height: 300px;
+    /* height: 100px; */
     background-color:white;
     border-style: solid;
     border-color:lightblue;
@@ -20,7 +23,7 @@ body {
 }
 
 .col {
-    height: 250px;;
+    /* height: 100px; */
     background-color:white;
     border-style: solid;
     border-color:lightblue;
