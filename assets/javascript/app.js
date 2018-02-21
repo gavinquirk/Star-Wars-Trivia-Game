@@ -34,6 +34,21 @@ $(document).ready(function () {
             question: "About how long did it take the Millenium Falcon to complete the Kessel Run?",
             choices: ["21 Parsecs", "7 Parsecs", "17 Parsecs", "12 Parsecs"],
             answer: "12 Parsecs"
+        },
+        {
+            question: "How did Luke Skywalker lose his hand?",
+            choices: ["Rancor Attack", "Darth Vader", "Crash Landing", "Bantha Accident"],
+            answer: "Darth Vader"
+        },
+        {
+            question: "What type of droid is C-3P0",
+            choices: ["Protocol Droid", "Servant Droid", "Combat Droid", "Pilot Droid"],
+            answer: "Protocol Droid"
+        },
+        {
+            question: "What is Obi-Wan Kenobi's nickname?",
+            choices: ["Old Ben", "Old Bob", "Old Roger", "Old Fart"],
+            answer: "Old Ben"
         }
     ]
     var correctAnswers = 0;
