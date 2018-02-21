@@ -1,6 +1,9 @@
 $("#gameContainer").hide()
+$("#endContainer").hide()
 
 $(document).ready(function () {
+
+    var correctAnswers = 0;
 
     var questionArr = [
         {
@@ -24,8 +27,7 @@ $(document).ready(function () {
     // On start button click
     $("#startBtn").on("click", function () {
 
-        // var counter = questionArr.length * 5
-        var counter = 5
+        var counter = questionArr.length * 5
 
         // Hide and show containers
         $("#introContainer").hide()
@@ -43,16 +45,12 @@ $(document).ready(function () {
             var question = questionArr[i].question
             var cCon = "#cCon" + i + ""
             var qCon = "#qCon" + i + ""
-            var text = "text"
             var choices = questionArr[i].choices
-            var newTestBtn = $("<input type='radio' name='testBtn' id='testBtn' value='testBtn'>")
-            var testBtn = "#testBtn"
 
             // Variable Function for generating choice content
             var choiceContent = function () {
                 for (c = 0; c < choices.length; c++) {
                     var choiceBtn = $("<input type='radio' name='btnRow" +i+ "' id='"+choices[c]+"'>")
-
                     $(cCon).append(choices[c], choiceBtn)
 
 
@@ -73,18 +71,13 @@ $(document).ready(function () {
         } // END OF FORLOOP
 
         // ANSWER CHECK FUNCTION
-        $("#testArea").append(newTestBtn)
-
             var answerCheck = function() {
-                if ($('#E-11 Blaster Rifle').is(':checked')) {
-
-                console.log("Test Button Clicked")
+                for (a = 0; a < questionArr.length; a++) {
+                    if ($("input[id='"+questionArr[a].answer+"']").is(':checked')) {
+                        correctAnswers++
+                        console.log('correct: ' + questionArr[a].answer)
+                    }
                 }
-                // if ($('#E-11 Blaster Rifle').is(':checked')) {
-
-                //     console.log("ANSWER CHECKED")
-                // }
-
             }
 
 
@@ -92,26 +85,18 @@ $(document).ready(function () {
         var interval = setInterval(function () {
             counter--
             $("#counter").html("Time Left: " + counter)
+
+            // End of timer conditions
             if (counter <= 0) {
                 console.log("Time Up")
                 clearInterval(interval)
                 gameContainer.hide()
+                $("#endContainer").show()
                 answerCheck()
+                $("#score").append("You have answered " +correctAnswers+ " out of " +questionArr.length+ " questions correctly")
+                console.log(correctAnswers + ' out of ' + questionArr.length + ' answers correct' )
             }
         }, 1000)
-
-        // var answerCheck = function() {
-        //     $("#radio_1, #radio_2", "#radio_3").change(function () {
-        //         if ($("#radio_1").is(":checked")) {
-        //             $('#div1').show();
-        //         }
-        //         else if ($("#radio_2").is(":checked")) {
-        //             $('#div2').show();
-        //         }
-        //         else 
-        //             $('#div3').show();
-        //     });        
-        // }
 
 
 
