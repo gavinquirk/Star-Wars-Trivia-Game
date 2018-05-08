@@ -1,4 +1,5 @@
 $("#gameContainer").hide()
+$("#buttonContainer").hide()
 $("#endContainer").hide()
 
 $(document).ready(function () {
@@ -55,17 +56,16 @@ $(document).ready(function () {
     var counter = questionArr.length * 5
 
     // Tell player the time that will be allotted
-    $("#startTime").append("You will have " +counter+ " seconds to complete " +questionArr.length+ " questions")
+    $("#startTime").append("You will have " + counter + " seconds to complete " + questionArr.length + " questions")
 
 
     // On start button click
     $("#startBtn").on("click", function () {
 
-
         // Hide and show containers
         $("#introContainer").hide()
         $("#gameContainer").show()
-
+        $("#buttonContainer").show()
 
         // Timer
         $("#counter").html("Time Left: " + counter)
@@ -73,15 +73,20 @@ $(document).ready(function () {
             counter--
             $("#counter").html("Time Left: " + counter)
 
+            // Button to change counter to 45 when clicked
+            $("#doneButton").on('click', function () {
+                counter = 0
+            })
+
             // End of timer conditions
             if (counter <= 0) {
                 console.log("Time Up")
                 clearInterval(interval)
                 gameContainer.hide()
+                $('#buttonContainer').hide()
                 $("#endContainer").show()
                 answerCheck()
-                $("#score").append("You have answered " +correctAnswers+ " out of " +questionArr.length+ " questions correctly")
-                console.log(correctAnswers + ' out of ' + questionArr.length + ' answers correct' )
+                $("#score").append("You have answered " + correctAnswers + " out of " + questionArr.length + " questions correctly")
             }
         }, 1000)
 
@@ -104,7 +109,7 @@ $(document).ready(function () {
             // Variable Function for generating choice content
             var choiceContent = function () {
                 for (c = 0; c < choices.length; c++) {
-                    var choiceBtn = $("<input type='radio' class='ml-1 mr-4' name='btnRow" +i+ "' id='"+choices[c]+"'>")
+                    var choiceBtn = $("<input type='radio' class='ml-1 mr-4' name='btnRow" + i + "' id='" + choices[c] + "'>")
                     $(cCon).append(choices[c], choiceBtn)
                 }
             }
@@ -114,7 +119,7 @@ $(document).ready(function () {
                 qConNew,
                 cConNew
             )))
-            
+
             // Append question to question container
             $(qCon).append(question)
             // Append Choice Content
@@ -123,13 +128,14 @@ $(document).ready(function () {
         } // END OF FORLOOP
 
         // ANSWER CHECK FUNCTION
-            var answerCheck = function() {
-                for (a = 0; a < questionArr.length; a++) {
-                    if ($("input[id='"+questionArr[a].answer+"']").is(':checked')) {
-                        correctAnswers++
-                        console.log('correct: ' + questionArr[a].answer)
-                    }
+        var answerCheck = function () {
+            for (a = 0; a < questionArr.length; a++) {
+                if ($("input[id='" + questionArr[a].answer + "']").is(':checked')) {
+                    correctAnswers++
+                    console.log('correct: ' + questionArr[a].answer)
                 }
             }
+        }
     })
+
 })
