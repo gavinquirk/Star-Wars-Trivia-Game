@@ -4,4 +4,4 @@ The Star-Wars-Trivia-Game application asks the user a series of Star Wars relate
 
 The application is deployed to github, and can be accessed at https://gavinquirk.github.io/Star-Wars-Trivia-Game/
 
-Open in Chrome Inspector or similar tool to see logs of correct answers!
+Open in Chrome Inspector or similar tool to see logs of your correct answers after submission!
