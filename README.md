@@ -31,7 +31,7 @@ Press Done to finish the quiz, or wait for time to run out
 
 After the quiz is done, you will be presented with the amount of questions you got correct
 
-<img src='./assets/images/readme-images/finish-page'>
+<img src='./assets/images/readme-images/finish-page.png'>
 
 <hr>
 
