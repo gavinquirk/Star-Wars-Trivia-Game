@@ -36,3 +36,5 @@ After the quiz is done, you will be presented with the amount of questions you g
 <hr>
 
 If you want to see which answers you got correct, open the inspector (Ctrl + Shift + I) in Chrome or other web browser
+
+Refresh the page to start again!
